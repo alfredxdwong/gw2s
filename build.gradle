@@ -13,7 +13,7 @@ buildscript {
 
 allprojects {
     group = 'info.mornlight.gw2s'
-    version = '0.5'
+    version = '1.0.5'
 
     apply {
         plugin 'idea'
@@ -27,7 +27,7 @@ allprojects {
 
     project.ext {
         android_compileSdkVersion = 18
-        android_buildToolsVersion = "19.0.0"
+        android_buildToolsVersion = "19.0.1"
         android_minSdkVersion = 10
         android_targetSdkVersion = 18
     }
