@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+        android:padding="4dp">
+  <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+          android:padding="10dp">
+    <TextView android:id="@+id/min"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_weight="1"
+            android:textSize="16sp">
+              </TextView>
+    <TextView android:id="@+id/max"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="80"
+              android:textSize="16sp"></TextView>
+  </LinearLayout>
+
+  <info.mornlight.gw2s.android.widget.RangeSeekBar xmlns:ml="http://schemas.mornlight.info/apk/res/android"
+          android:id="@+id/seekbar" android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+
+          ml:numberType="INTEGER"
+          ml:absoluteMinValue="1.0"
+          ml:absoluteMaxValue="80.0">
+  </info.mornlight.gw2s.android.widget.RangeSeekBar>
+</LinearLayout>

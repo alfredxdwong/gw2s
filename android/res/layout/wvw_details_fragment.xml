@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="10dp">
+
+  <LinearLayout android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@drawable/border"
+                android:padding="1dp">
+    <TextView android:layout_height="wrap_content"
+              android:id="@+id/score_bar_red"
+              android:layout_weight="2"
+              android:background="@color/world_red"
+              android:layout_width="wrap_content">
+    </TextView>
+    <TextView android:id="@+id/score_bar_blue"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:background="@color/world_blue"
+              android:layout_width="wrap_content">
+
+
+    </TextView>
+    <TextView android:id="@+id/score_bar_green"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:background="@color/world_green"
+              android:layout_width="wrap_content">
+    </TextView>
+
+  </LinearLayout>
+
+  <LinearLayout android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+    <TextView android:id="@+id/red_world"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Red World"
+              android:textSize="18sp"
+              android:layout_weight="1"
+              android:textColor="@color/world_red"/>
+    <TextView android:id="@+id/score_red"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="2000"
+              android:textSize="18sp"
+              android:textColor="@color/world_red"/>
+  </LinearLayout>
+  <LinearLayout android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+    <TextView android:id="@+id/blue_world"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="blue World"
+              android:textSize="18sp"
+              android:layout_weight="1"
+              android:textColor="@color/world_blue"/>
+    <TextView android:id="@+id/score_blue"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="2000"
+              android:textSize="18sp"
+              android:textColor="@color/world_blue"/>
+  </LinearLayout>
+  <LinearLayout android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+    <TextView android:id="@+id/green_world"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Green World"
+              android:textSize="18sp"
+              android:layout_weight="1"
+              android:textColor="@color/world_green"/>
+    <TextView android:id="@+id/score_green"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="2000"
+              android:textSize="18sp"
+              android:textColor="@color/world_green"/>
+  </LinearLayout>
+  <ExpandableListView android:id="@+id/maps"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:layout_marginTop="10dp"
+                      android:background="@drawable/border"
+                      android:groupIndicator="@drawable/group_indicator">
+
+  </ExpandableListView>
+</LinearLayout>

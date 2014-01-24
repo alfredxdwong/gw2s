@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory
+          android:title="@string/dynamic_events">
+    <CheckBoxPreference android:key="dynamic_events_auto_update"
+                        android:title="@string/auto_update_dynamic_events" />
+    <info.mornlight.gw2s.android.ui.IntEditTextPreference android:key="dynamic_events_auto_update_interval"
+                        android:title="@string/auto_update_dynamic_events_interval"
+                        android:inputType="number"
+            android:defaultValue="30">
+
+                        </info.mornlight.gw2s.android.ui.IntEditTextPreference>
+
+  </PreferenceCategory>
+  <PreferenceCategory
+          android:title="@string/world_vs_world">
+    <CheckBoxPreference android:key="wvw_auto_update"
+                        android:title="@string/auto_update_wvw" />
+    <info.mornlight.gw2s.android.ui.IntEditTextPreference android:key="wvw_auto_update_interval"
+                        android:title="@string/auto_update_wvw_interval"
+                        android:inputType="number"
+            android:defaultValue="30">
+
+    </info.mornlight.gw2s.android.ui.IntEditTextPreference>
+
+  </PreferenceCategory>
+
+  <!--PreferenceCategory
+          android:title="@string/update_database">
+    <CheckBoxPreference android:key="update_database_only_with_wifi"
+                        android:title="@string/update_database_only_with_wifi"
+            android:defaultValue="true"/>
+  </PreferenceCategory-->
+
+</PreferenceScreen>

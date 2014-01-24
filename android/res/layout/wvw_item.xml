@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="10dp">
+  <TextView android:id="@+id/red_world"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/world_red"
+            android:text="Red World"></TextView>
+  <TextView android:id="@+id/blue_world"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/world_blue"
+            android:text="Blue World"></TextView>
+  <TextView android:id="@+id/green_world"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/world_green"
+            android:text="Green World"></TextView>
+  <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+    <TextView android:id="@+id/start_time"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="start"
+              android:textColor="@color/text_white">
+
+    </TextView>
+    <TextView android:id="@+id/end_time"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="end"
+              android:textColor="@color/text_white">
+
+    </TextView>
+
+  </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,9 @@
+.idea
+.gradle
+*.iml
+*.apk
+*.db
+*.zip
+/android/local.properties
+/android/project.properties
+/signing.properties

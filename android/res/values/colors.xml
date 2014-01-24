@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="black">#000000</color>
+  <color name="actionbar_background">#111111</color>
+
+  <color name="event_active">#0000ff</color>
+  <color name="event_warmup">#00ff00</color>
+  <color name="event_success">#ffff00</color>
+  <color name="event_fail">#ff0000</color>
+  <color name="event_preparation">#aaffaa</color>
+  <color name="event_invalid">#ff0000</color>
+  <color name="world_red">#b52628</color>
+  <color name="world_blue">#ff1a6998</color>
+  <color name="world_green">#ff598001</color>
+  <color name="world_neutral">#bbbbbb</color>
+
+  <color name="rarity_junk">#a0a0a0</color>
+  <color name="rarity_basic">#dddddd</color>
+  <color name="rarity_fine">#62A4DA</color>
+  <color name="rarity_masterwork">#1a9306</color>
+  <color name="rarity_rare">#fcd00b</color>
+  <color name="rarity_exotic">#ffa405</color>
+  <color name="rarity_ascended">#fb3e8d</color>
+  <color name="rarity_legendary">#4C139D</color>
+  <color name="text_white">#cccccc</color>
+  <color name="attribute">#00aa00</color>
+
+
+</resources>

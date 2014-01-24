@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="Theme.GW2" parent="@style/Theme.Sherlock.Light.DarkActionBar">
+    <item name="actionBarStyle">@style/Widget.Styled.ActionBar</item>
+    <item name="android:actionBarStyle">@style/Widget.Styled.ActionBar</item>
+    <item name="actionModeStyle">@style/Widget.Styled.ActionBar</item>
+    <item name="android:actionModeStyle">@style/Widget.Styled.ActionBar</item>
+  </style>
+
+  <style name="Widget.Styled.ActionBar" parent="Widget.Sherlock.ActionBar.Solid">
+    <item name="background">@color/actionbar_background</item>
+    <item name="android:background">@color/actionbar_background</item>
+    <item name="backgroundSplit">@color/actionbar_background</item>
+    <item name="android:backgroundSplit">@color/actionbar_background</item>
+    <item name="titleTextStyle">@style/Widget.TitleTextStyle</item>
+    <item name="android:titleTextStyle">@style/Widget.TitleTextStyle</item>
+  </style>
+
+  <style name="Widget.TitleTextStyle" parent="TextAppearance.Sherlock.Widget.ActionBar.Title">
+    <item name="android:textColor">@color/text_white</item>
+    <item name="android:textSize">20sp</item>
+  </style>
+
+</resources>

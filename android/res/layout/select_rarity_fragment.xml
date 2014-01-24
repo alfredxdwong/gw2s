@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+  <RadioGroup android:id="@+id/rarity"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+    <RadioButton android:id="@+id/rarity_all"
+                 android:text="@string/rarity_all"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+
+    </RadioButton>
+    <RadioButton android:id="@+id/rarity_basic"
+                 android:text="@string/rarity_basic"
+                 android:textColor="@color/rarity_basic"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+
+    </RadioButton>
+    <RadioButton android:id="@+id/rarity_fine"
+                 android:text="@string/rarity_fine"
+                 android:textColor="@color/rarity_fine"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+
+    </RadioButton>
+    <RadioButton android:id="@+id/rarity_masterwork"
+                 android:text="@string/rarity_masterwork"
+                 android:textColor="@color/rarity_masterwork"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+
+    </RadioButton>
+    <RadioButton android:id="@+id/rarity_rare"
+                 android:text="@string/rarity_rare"
+                 android:textColor="@color/rarity_rare"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+
+    </RadioButton>
+    <RadioButton android:id="@+id/rarity_exotic"
+                 android:text="@string/rarity_exotic"
+                 android:textColor="@color/rarity_exotic"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+
+    </RadioButton>
+    <RadioButton android:id="@+id/rarity_ascended"
+                 android:text="@string/rarity_ascended"
+                 android:textColor="@color/rarity_ascended"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+
+    </RadioButton>
+    <RadioButton android:id="@+id/rarity_legendary"
+                 android:text="@string/rarity_legendary"
+                 android:textColor="@color/rarity_legendary"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content">
+
+    </RadioButton>
+  </RadioGroup>
+
+</LinearLayout>

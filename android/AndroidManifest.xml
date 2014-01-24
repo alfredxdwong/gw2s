@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="info.mornlight.gw2s.android"
+          android:versionCode="10"
+          android:versionName="1.0.5">
+    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="15"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application android:label="@string/app_name"
+                 android:icon="@drawable/ic_launcher"
+                 android:theme="@style/Theme.GW2"
+                 android:name=".app.Gw2sApplication">
+        <meta-data android:name="com.google.android.gms.version"
+                   android:value="@integer/google_play_services_version"/>
+
+        <activity android:name=".app.MainActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".app.DynamicEventsActivity"></activity>
+        <activity android:name=".app.WvwActivity"></activity>
+        <activity android:name=".app.ItemsActivity"></activity>
+        <activity android:name=".app.RecipesActivity"></activity>
+        <activity android:name=".app.SelectWorldActivity"></activity>
+        <activity android:name=".app.SettingsActivity"></activity>
+        <activity android:name=".app.WvwDetailsActivity"></activity>
+        <activity android:name=".app.AboutActivity"></activity>
+        <activity android:name=".app.ItemDetailsActivity"></activity>
+
+        <activity android:name="com.google.android.gms.ads.AdActivity"
+                  android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+    </application>
+</manifest>
