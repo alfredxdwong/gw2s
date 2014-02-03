@@ -32,7 +32,7 @@ public class MapFragment extends LoaderFragment<ContinentFloor, View> {
 
     private Continent continent;
 
-    private List<ItemizedOverlay<OverlayItem>> overlays;
+    private ItemizedOverlay<OverlayItem> overlay;
 
     @Override
     protected View onCreateContentView(LayoutInflater inflater, Bundle savedInstanceState) {
@@ -57,11 +57,11 @@ public class MapFragment extends LoaderFragment<ContinentFloor, View> {
         super.onLoadSucceed(loader, data);
 
         this.data = data;
-        overlays = generateOverlays();
+        overlay = generateOverlays();
         displayOverlays();
     }
 
-    private List<ItemizedOverlay<OverlayItem>> generateOverlays() {
+    private ItemizedOverlay<OverlayItem> generateOverlays() {
         if(data == null) return null;
 
         List<OverlayItem> taskOverlayItems = new ArrayList<OverlayItem>();
@@ -73,7 +73,7 @@ public class MapFragment extends LoaderFragment<ContinentFloor, View> {
         for(RegionFloor region : data.getRegions().values()) {
             for(MapFloor map : region.getMaps().values()) {
                 for(Task task : map.getTasks()) {
-                    OverlayItem overlayItem = new OverlayItem(task.getObjective(), null,
+                    OverlayItem overlayItem = new OverlayItem(task.getObjective() + " (" + task.getLevel() + ")", null,
                             TileSystem.PixelXYToLatLong(task.getCoord().getX(), task.getCoord().getY(),
                                     continent.getMaxZoom(), null));
                     overlayItem.setMarker(getResources().getDrawable(R.drawable.marker_task));
@@ -91,12 +91,18 @@ public class MapFragment extends LoaderFragment<ContinentFloor, View> {
                         waypointsOverlayItems.add(overlayItem);
                     } else if ("landmark".equals(poi.getType())) {
                         overlayItem.setMarker(getResources()
-                                .getDrawable(R.drawable.marker_landmark));
+                                .getDrawable(R.drawable.marker_poi));
                         landmarkOverlayItems.add(overlayItem);
                     } else if ("vista".equals(poi.getType())) {
                         overlayItem.setMarker(getResources()
                                 .getDrawable(R.drawable.marker_vista));
                         vistaOverlayItems.add(overlayItem);
+                    } else if ("unlock".equals(poi.getType())) {
+                        overlayItem.setMarker(getResources()
+                                .getDrawable(R.drawable.marker_dungeon));
+                        vistaOverlayItems.add(overlayItem);
+                    } else {
+                        Log.i("MapFragment", "Unsupported POI " + poi.getType());
                     }
                 }
 
@@ -105,40 +111,28 @@ public class MapFragment extends LoaderFragment<ContinentFloor, View> {
                             TileSystem.PixelXYToLatLong(skillChallenge.getCoord().getX(), skillChallenge.getCoord().getY(),
                                     continent.getMaxZoom(), null));
                     overlayItem.setMarker(getResources()
-                            .getDrawable(R.drawable.marker_skill_challenge));
+                            .getDrawable(R.drawable.marker_skillpoint));
                     skillChallengeOverlayItems.add(overlayItem);
                 }
             }
         }
 
-        List<ItemizedOverlay<OverlayItem>> overlays = new ArrayList<ItemizedOverlay<OverlayItem>>();
-        overlays.add(new ItemizedIconOverlay<OverlayItem>(getActivity(), taskOverlayItems, null) {
-            @Override
-            protected boolean onTap(int index) {
-                showItemInfo(getItem(index).getTitle());
-                return true;
-            }
-        });
-        overlays.add(new ItemizedIconOverlay<OverlayItem>(getActivity(), waypointsOverlayItems, null) {
-            @Override
-            protected boolean onTap(int index) {
-                showItemInfo(getItem(index).getTitle());
-                return true;
-            }
-        });
-        overlays.add(new ItemizedIconOverlay<OverlayItem>(getActivity(), landmarkOverlayItems, null) {
-            @Override
-            protected boolean onTap(int index) {
-                showItemInfo(getItem(index).getTitle());
-                return true;
-            }
-        });
-        overlays.add(new ItemizedIconOverlay<OverlayItem>(getActivity(), vistaOverlayItems, null) {
-        });
-        overlays.add(new ItemizedIconOverlay<OverlayItem>(getActivity(), skillChallengeOverlayItems, null) {
-        });
+        List<OverlayItem> overlayItems = new ArrayList<OverlayItem>();
+        overlayItems.addAll(taskOverlayItems);
+        overlayItems.addAll(waypointsOverlayItems);
+        overlayItems.addAll(landmarkOverlayItems);
+        overlayItems.addAll(vistaOverlayItems);
+        overlayItems.addAll(skillChallengeOverlayItems);
 
-        return overlays;
+        ItemizedIconOverlay<OverlayItem> overlay = new ItemizedIconOverlay<OverlayItem>(getActivity(), overlayItems, null) {
+            @Override
+            protected boolean onTap(int index) {
+                showItemInfo(getItem(index).getTitle());
+                return true;
+            }
+        };
+
+        return overlay;
     }
 
     private void showItemInfo(String info) {
@@ -176,39 +170,15 @@ public class MapFragment extends LoaderFragment<ContinentFloor, View> {
     }
 
     private void displayOverlays() {
-        if(overlays == null) return;
-
-        Overlay taskOverlay = overlays.get(0);
-        Overlay waypointOverlay = overlays.get(1);
-        Overlay landMarkOverlay = overlays.get(2);
-        Overlay vistaOverlay = overlays.get(3);
-        Overlay skillChallengeOverlay = overlays.get(4);
+        if(overlay == null) return;
 
         try {
             if (mapview.getZoomLevel() >= 4) {
-                if (mapview.getOverlayManager().size() < 2) {
-                    if (landMarkOverlay != null) {
-                        mapview.getOverlayManager().add(landMarkOverlay);
-                    }
-                    if (waypointOverlay != null) {
-                        mapview.getOverlayManager().add(waypointOverlay);
-                    }
-                    if (taskOverlay != null) {
-                        mapview.getOverlayManager().add(taskOverlay);
-                    }
-                    if (vistaOverlay != null) {
-                        mapview.getOverlayManager().add(vistaOverlay);
-                    }
-                    if (skillChallengeOverlay != null) {
-                        mapview.getOverlayManager().add(skillChallengeOverlay);
-                    }
+                if (mapview.getOverlayManager().isEmpty()) {
+                    mapview.getOverlayManager().add(overlay);
                 }
             } else {
-                mapview.getOverlayManager().remove(landMarkOverlay);
-                mapview.getOverlayManager().remove(waypointOverlay);
-                mapview.getOverlayManager().remove(taskOverlay);
-                mapview.getOverlayManager().remove(vistaOverlay);
-                mapview.getOverlayManager().remove(skillChallengeOverlay);
+                mapview.getOverlayManager().remove(overlay);
             }
         } catch (Exception e) {
             Log.e(getTag(), "Error displaying markers", e);
