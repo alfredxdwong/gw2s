@@ -1,7 +1,6 @@
 package info.mornlight.gw2s.android.app;
 
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.Loader;
@@ -10,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import info.mornlight.gw2s.android.R;
-import info.mornlight.gw2s.android.model.Event;
+import info.mornlight.gw2s.android.model.event.Event;
 import info.mornlight.gw2s.android.model.IntName;
 import info.mornlight.gw2s.android.model.StringName;
 import info.mornlight.gw2s.android.ui.*;

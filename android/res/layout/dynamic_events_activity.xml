@@ -7,15 +7,15 @@
               android:background="@drawable/background_tradingpost"
               android:gravity="center_horizontal">
 
-  <include layout="@layout/ad_banner"/>
+    <include layout="@layout/ad_banner"/>
 
-  <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:name="info.mornlight.gw2s.android.app.DynamicEventsFragment"
-            android:id="@+id/fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout="@layout/dynamic_events_fragment">
-  </fragment>
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:name="info.mornlight.gw2s.android.app.DynamicEventsFragment"
+              android:id="@+id/fragment"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:layout="@layout/dynamic_events_fragment">
+    </fragment>
 
 </LinearLayout>

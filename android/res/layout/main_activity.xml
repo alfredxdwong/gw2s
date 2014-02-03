@@ -6,18 +6,23 @@
               android:background="@drawable/background"
               android:gravity="center_horizontal">
 
-  <include layout="@layout/ad_banner" />
+    <include layout="@layout/ad_banner"/>
 
-  <TableLayout android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:gravity="center">
-    <TableRow android:layout_gravity="center"
-              android:gravity="center"
-              android:layout_height="wrap_content"
-              android:layout_width="wrap_content"
-              android:layout_weight="1">
-      <LinearLayout android:orientation="vertical"
+    <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+        <TableRow
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1">
+
+            <LinearLayout
+                    android:orientation="vertical"
                     android:id="@+id/dynamic_events"
                     android:padding="5sp"
                     android:layout_width="match_parent"
@@ -27,20 +32,25 @@
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:background="@drawable/clickable">
-        <ImageView android:src="@drawable/logo_dynamic_events"
-                   android:layout_height="wrap_content"
-                   android:layout_width="wrap_content"
-                   android:layout_weight="1">
 
-        </ImageView>
-        <TextView android:text="@string/dynamic_events"
-                  style="@style/caption_text">
+                <ImageView
+                        android:src="@drawable/logo_dynamic_events"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1">
 
-        </TextView>
+                </ImageView>
 
-      </LinearLayout>
+                <TextView
+                        android:text="@string/dynamic_events"
+                        style="@style/caption_text">
 
-      <LinearLayout android:id="@+id/wvw"
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/wvw"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -49,25 +59,33 @@
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:background="@drawable/clickable">
-        <ImageView android:src="@drawable/logo_wvw"
-                   android:layout_height="wrap_content"
-                   android:layout_width="wrap_content"
-                   android:layout_weight="1">
 
-        </ImageView>
-        <TextView android:text="@string/world_vs_world"
-                  style="@style/caption_text">
+                <ImageView
+                        android:src="@drawable/logo_wvw"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1">
 
-        </TextView>
+                </ImageView>
 
-      </LinearLayout>
-    </TableRow>
-    <TableRow android:layout_gravity="center"
-              android:gravity="center"
-              android:layout_height="wrap_content"
-              android:layout_width="wrap_content"
-              android:layout_weight="1">
-      <LinearLayout android:id="@+id/items"
+                <TextView
+                        android:text="@string/world_vs_world"
+                        style="@style/caption_text">
+
+                </TextView>
+
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1">
+
+            <LinearLayout
+                    android:id="@+id/items"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -76,20 +94,24 @@
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:background="@drawable/clickable">
-        <ImageView android:src="@drawable/logo_items"
-                   android:layout_height="wrap_content"
-                   android:layout_width="wrap_content"
-                   android:layout_weight="1">
-        </ImageView>
 
-        <TextView android:text="@string/items"
-                  style="@style/caption_text">
+                <ImageView
+                        android:src="@drawable/logo_items"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1">
+                </ImageView>
 
-        </TextView>
+                <TextView
+                        android:text="@string/items"
+                        style="@style/caption_text">
 
-      </LinearLayout>
+                </TextView>
 
-      <LinearLayout android:id="@+id/recipes"
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/recipes"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,22 +120,60 @@
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:background="@drawable/clickable">
-        <ImageView android:src="@drawable/logo_crafting"
-                   android:layout_height="wrap_content"
-                   android:layout_width="wrap_content"
-                   android:layout_weight="1">
 
-        </ImageView>
-        <TextView android:text="@string/recipes"
-                  style="@style/caption_text">
+                <ImageView
+                        android:src="@drawable/logo_crafting"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1">
 
-        </TextView>
+                </ImageView>
 
-      </LinearLayout>
-    </TableRow>
-  </TableLayout>
+                <TextView
+                        android:text="@string/recipes"
+                        style="@style/caption_text">
+
+                </TextView>
+
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1">
+
+            <LinearLayout
+                    android:id="@+id/map"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:background="@drawable/clickable">
+
+                <ImageView
+                        android:src="@drawable/logo_items"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1">
+                </ImageView>
+
+                <TextView
+                        android:text="@string/map"
+                        style="@style/caption_text">
+
+                </TextView>
+
+            </LinearLayout>
 
 
+        </TableRow>
+    </TableLayout>
 
 
 </LinearLayout>

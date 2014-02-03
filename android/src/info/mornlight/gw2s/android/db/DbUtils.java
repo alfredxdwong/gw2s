@@ -1,7 +1,7 @@
 package info.mornlight.gw2s.android.db;
 
 import android.database.Cursor;
-import info.mornlight.gw2s.android.model.*;
+import info.mornlight.gw2s.android.model.item.*;
 
 import static info.mornlight.gw2s.android.db.Consts.*;
 

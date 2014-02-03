@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.db.Database;
-import info.mornlight.gw2s.android.model.*;
+import info.mornlight.gw2s.android.model.item.*;
 import info.mornlight.gw2s.android.ui.LoaderFragment;
 import info.mornlight.gw2s.android.ui.ThrowableLoader;
 import roboguice.inject.InjectView;

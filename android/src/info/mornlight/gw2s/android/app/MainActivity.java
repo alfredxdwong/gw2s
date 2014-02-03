@@ -21,7 +21,10 @@ public class MainActivity extends BaseActivity
 
     @InjectView(R.id.recipes)
     private View recipes;
-    /** Called when the activity is first created. */
+
+    @InjectView(R.id.map)
+    private View map;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,13 @@ public class MainActivity extends BaseActivity
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RecipesActivity.class));
+            }
+        });
+
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MapActivity.class));
             }
         });
     }

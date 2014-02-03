@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
 import info.mornlight.gw2s.android.R;
-import info.mornlight.gw2s.android.model.WvwMatch;
+import info.mornlight.gw2s.android.model.wvw.WvwMatch;
 import roboguice.inject.InjectFragment;
 
 /**

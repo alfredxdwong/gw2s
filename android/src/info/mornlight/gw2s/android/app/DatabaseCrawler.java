@@ -2,7 +2,7 @@ package info.mornlight.gw2s.android.app;
 
 import info.mornlight.gw2s.android.client.ApiClient;
 import info.mornlight.gw2s.android.db.Database;
-import info.mornlight.gw2s.android.model.ItemDetails;
+import info.mornlight.gw2s.android.model.item.ItemDetails;
 
 import java.io.IOException;
 import java.util.*;

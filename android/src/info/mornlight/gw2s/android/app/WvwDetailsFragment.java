@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.*;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.model.*;
+import info.mornlight.gw2s.android.model.wvw.WvwMap;
+import info.mornlight.gw2s.android.model.wvw.WvwMapType;
+import info.mornlight.gw2s.android.model.wvw.WvwMatchDetails;
+import info.mornlight.gw2s.android.model.wvw.WvwObjective;
 import info.mornlight.gw2s.android.ui.*;
 import roboguice.inject.InjectView;
 

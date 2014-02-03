@@ -2,12 +2,11 @@ package info.mornlight.gw2s.android.app;
 
 import android.content.Context;
 import info.mornlight.gw2s.android.R;
-import info.mornlight.gw2s.android.model.*;
+import info.mornlight.gw2s.android.model.item.*;
 import net.sf.cglib.core.CollectionUtils;
 import net.sf.cglib.core.Transformer;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

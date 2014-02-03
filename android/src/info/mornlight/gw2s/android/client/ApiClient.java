@@ -2,6 +2,14 @@ package info.mornlight.gw2s.android.client;
 
 import info.mornlight.gw2s.android.http.JsonClient;
 import info.mornlight.gw2s.android.model.*;
+import info.mornlight.gw2s.android.model.event.Event;
+import info.mornlight.gw2s.android.model.event.EventDetails;
+import info.mornlight.gw2s.android.model.item.ItemDetails;
+import info.mornlight.gw2s.android.model.item.RecipeDetails;
+import info.mornlight.gw2s.android.model.map.Continent;
+import info.mornlight.gw2s.android.model.map.ContinentFloor;
+import info.mornlight.gw2s.android.model.wvw.WvwMatch;
+import info.mornlight.gw2s.android.model.wvw.WvwMatchDetails;
 import org.apache.http.client.methods.HttpGet;
 
 import java.io.IOException;
@@ -25,6 +33,10 @@ public class ApiClient extends JsonClient {
 
     static class EventDetailsWrap {
         public Map<String, EventDetails> events;
+    }
+
+    static class ContinentsWrap {
+        public Map<String, Continent> continents;
     }
 
     public List<Event> listEvents(int worldId) throws IOException {
@@ -141,7 +153,26 @@ public class ApiClient extends JsonClient {
         return details;
     }
 
+    public List<Continent> listContinents() throws IOException {
+        String url = "https://api.guildwars2.com/v1/continents.json";
 
+        HttpGet request = newGet(url);
+        ContinentsWrap wrap = (ContinentsWrap) invoke(request, ContinentsWrap.class);
 
+        for(Map.Entry<String, Continent> entry : wrap.continents.entrySet()) {
+            entry.getValue().setId(entry.getKey());
+        }
 
+        return new ArrayList<Continent>(wrap.continents.values());
+    }
+
+    public ContinentFloor readContinentFloor(int continentId, int floor) throws IOException {
+        String url = String.format("https://api.guildwars2.com/v1/map_floor.json?continent_id=%d&floor=%d",
+                continentId, floor);
+
+        HttpGet request = newGet(url);
+        ContinentFloor continent = (ContinentFloor) invoke(request, ContinentFloor.class);
+
+        return continent;
+    }
 }

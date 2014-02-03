@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import info.mornlight.gw2s.android.model.*;
+import info.mornlight.gw2s.android.model.item.*;
 
 import java.io.IOException;
 import java.util.ArrayList;

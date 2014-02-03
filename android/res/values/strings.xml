@@ -155,4 +155,6 @@
   <string name="disciplines">Disciplines</string>
   <string name="booze">Booze</string>
   <string name="min_rating">Min Rating</string>
+    <string name="map">Map</string>
+    <string name="load_continent_error">Failed to load continents.</string>
 </resources>

@@ -12,6 +12,8 @@ dependencies {
         'org.apache.commons:commons-lang3:3.1',
         'commons-collections:commons-collections:3.2.1',
         'commons-io:commons-io:2.4',
+        'org.osmdroid:osmdroid-android:4.0',
+        'eu.lp0.slf4j:slf4j-android:1.7.5-7',
         project(':lib:SlidingMenu'),
         fileTree(dir: '../lib', include: '*.jar')
 }

@@ -7,9 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
-/**
- * Created by alfred on 5/28/13.
- */
 public class Json {
     private static final ObjectMapper mapper;
     private static final TypeFactory typeFactory;

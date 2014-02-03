@@ -12,7 +12,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import info.mornlight.gw2s.android.R;
-import info.mornlight.gw2s.android.model.*;
+import info.mornlight.gw2s.android.model.item.Discipline;
 import info.mornlight.gw2s.android.ui.ItemListAdapter;
 import info.mornlight.gw2s.android.ui.ItemView;
 import roboguice.inject.InjectFragment;

@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.model.IntName;
-import info.mornlight.gw2s.android.model.WvwMatch;
+import info.mornlight.gw2s.android.model.wvw.WvwMatch;
 import info.mornlight.gw2s.android.ui.ItemListAdapter;
 import info.mornlight.gw2s.android.ui.ItemView;
 import info.mornlight.gw2s.android.ui.RefreshableFragment;

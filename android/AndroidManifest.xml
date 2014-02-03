@@ -32,6 +32,7 @@
         <activity android:name=".app.WvwDetailsActivity"></activity>
         <activity android:name=".app.AboutActivity"></activity>
         <activity android:name=".app.ItemDetailsActivity"></activity>
+        <activity android:name=".app.MapActivity"></activity>
 
         <activity android:name="com.google.android.gms.ads.AdActivity"
                   android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
