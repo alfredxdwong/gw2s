@@ -157,7 +157,7 @@
                     android:background="@drawable/clickable">
 
                 <ImageView
-                        android:src="@drawable/logo_items"
+                        android:src="@drawable/logo_map"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_weight="1">
@@ -169,6 +169,18 @@
 
                 </TextView>
 
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/build"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="5sp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:background="@drawable/clickable">
             </LinearLayout>
 
 

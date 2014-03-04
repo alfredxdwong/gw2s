@@ -1,8 +1,10 @@
 package info.mornlight.gw2s.android.app;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.content.Loader;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import info.mornlight.gw2s.android.R;
@@ -10,6 +12,7 @@ import info.mornlight.gw2s.android.model.map.*;
 import info.mornlight.gw2s.android.ui.LoaderFragment;
 import info.mornlight.gw2s.android.ui.ThrowableLoader;
 import info.mornlight.gw2s.android.util.ToastUtils;
+import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.events.MapListener;
 import org.osmdroid.events.ScrollEvent;
 import org.osmdroid.events.ZoomEvent;
@@ -141,6 +144,9 @@ public class MapFragment extends LoaderFragment<ContinentFloor, View> {
 
 
     public void updateView(Continent continent) {
+        data = null;
+        overlay = null;
+
         this.continent = continent;
         //https://tiles.guildwars2.com/{continent_id}/{floor}/{zoom}/{x}/{y}.jpg
         ITileSource tileSource = new XYTileSource(continent.getName() + " tiles",
@@ -151,7 +157,7 @@ public class MapFragment extends LoaderFragment<ContinentFloor, View> {
         mapview.setMultiTouchControls(true);
         mapview.setUseDataConnection(true);
         mapview.setBuiltInZoomControls(true);
-        mapview.getController().setZoom(2);
+        //mapview.getController().setZoom(2);
         mapview.setMapListener(new MapListener() {
             @Override
             public boolean onScroll(ScrollEvent scrollEvent) {
@@ -164,9 +170,44 @@ public class MapFragment extends LoaderFragment<ContinentFloor, View> {
                 return false;
             }
         });
+        mapview.getOverlayManager().clear();
 
         //load the continent floor
         getSherlockActivity().getSupportLoaderManager().initLoader(1, null, this);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        //SparseArray<Parcelable> arr = new SparseArray<Parcelable>();
+        //mapview.saveHierarchyState(arr);
+        //utState.putSparseParcelableArray("mapview", arr);
+
+        outState.putInt("mapview_zoom", mapview.getZoomLevel());
+        outState.putParcelable("mapview_center", (Parcelable) mapview.getMapCenter());
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //MapView view = (MapView) getActivity().findViewById(R.id.mapview);
+        //if(savedInstanceState != null) {
+        //    view.restoreHierarchyState(savedInstanceState.getSparseParcelableArray("mapview"));
+        //}
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        if(savedInstanceState != null) {
+            mapview.getController().setZoom(savedInstanceState.getInt("mapview_zoom"));
+            mapview.getController().setCenter((IGeoPoint) savedInstanceState.getParcelable("mapview_center"));
+        } else {
+            mapview.getController().setZoom(2);
+        }
     }
 
     private void displayOverlays() {

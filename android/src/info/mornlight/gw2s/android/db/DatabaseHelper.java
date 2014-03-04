@@ -33,7 +33,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 	}
 }*/
 public class DatabaseHelper extends SQLiteAssetHelper {
-    static final int DB_VERSION = 8;
+    static final int DB_VERSION = 9;
     static final String DB_NAME = "gw2s";
 
     public DatabaseHelper(Context context) {
