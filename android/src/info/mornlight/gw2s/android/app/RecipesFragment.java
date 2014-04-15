@@ -34,7 +34,7 @@ public class RecipesFragment extends RefreshableFragment<Cursor, ListView> imple
 
     private Rarity rarityFilter;
     private int minLevel = 1;
-    private int maxLevel = 400;
+    private int maxLevel = 500;
 
     public void setFilter(Discipline discipline, String type) {
         this.discipline = discipline;
@@ -68,7 +68,7 @@ public class RecipesFragment extends RefreshableFragment<Cursor, ListView> imple
             break;
             case R.id.m_level: {
                 SelectLevelRangeDialogFragment fragment =
-                        SelectLevelRangeDialogFragment.newInstance(RequestCodes.SELECT_LEVEL_RANGE, getString(R.string.select_level_range), minLevel, maxLevel, 1, 400, this);
+                        SelectLevelRangeDialogFragment.newInstance(RequestCodes.SELECT_LEVEL_RANGE, getString(R.string.select_level_range), minLevel, maxLevel, 1, 500, this);
                 fragment.show(getFragmentManager(), "TAG_SELECT_LEVEL_RANGE");
             }
             break;

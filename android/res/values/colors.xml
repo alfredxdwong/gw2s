@@ -24,6 +24,7 @@
   <color name="rarity_legendary">#4C139D</color>
   <color name="text_white">#cccccc</color>
   <color name="attribute">#00aa00</color>
+  <color name="bonus">#6a92cf</color>
 
 
 </resources>

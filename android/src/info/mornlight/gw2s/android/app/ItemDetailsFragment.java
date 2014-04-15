@@ -209,6 +209,22 @@ public class ItemDetailsFragment extends LoaderFragment<ItemDetailsFragment.Item
                 view.setTextColor(getResources().getColor(R.color.attribute));
                 attrs.addView(view, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             }
+
+            //bonuses
+            if(details instanceof UpgradeComponent) {
+                UpgradeComponent component = (UpgradeComponent)details;
+                if (component.getBonuses() != null && component.getBonuses().length > 0) {
+                    LinearLayout bonuses = (LinearLayout) infixUpgrade.findViewById(R.id.bonuses);
+                    attrs.removeAllViews();
+                    for(String bonus : component.getBonuses()) {
+                        TextView view = new TextView(getActivity());
+                        view.setText(bonus);
+                        view.setTextColor(getResources().getColor(R.color.bonus));
+                        bonuses.addView(view, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    }
+                }
+            }
+
         } else {
             infixUpgrade.setVisibility(View.GONE);
         }

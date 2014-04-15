@@ -10,6 +10,8 @@ public class UpgradeComponent extends ItemBase implements InfixUpgradable {
     private InfixUpgrade infixUpgrade;
     private String suffix;
 
+    private String[] bonuses;
+
     public UpgradeComponentType getType() {
         return type;
     }
@@ -29,4 +31,6 @@ public class UpgradeComponent extends ItemBase implements InfixUpgradable {
     public String getSuffix() {
         return suffix;
     }
+
+    public String[] getBonuses() { return bonuses; }
 }
