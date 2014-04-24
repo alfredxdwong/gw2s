@@ -26,9 +26,9 @@ allprojects {
     }
 
     project.ext {
-        android_compileSdkVersion = 18
-        android_buildToolsVersion = "19.0.1"
+        android_compileSdkVersion = 19
+        android_buildToolsVersion = "19.0.3"
         android_minSdkVersion = 10
-        android_targetSdkVersion = 18
+        android_targetSdkVersion = 19
     }
 }

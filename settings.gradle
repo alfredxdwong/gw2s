@@ -1,2 +1,2 @@
 rootProject.name = 'gw2s'
-include 'lib:SlidingMenu', 'android', 'utils'
+include 'lib:SlidingMenu', 'android'
