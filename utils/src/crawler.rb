@@ -3,7 +3,6 @@ require 'rest_client'
 require 'set'
 require 'json'
 require 'open-uri'
-#require 'nokogiri'
 require 'work_queue'
 require 'openssl'
 
@@ -166,6 +165,7 @@ class Crawler
     remote_ids.merge(doc['items'])
     puts("[#{Time.now}] Got #{remote_ids.size} remote items ids")
 
+    #fetch items from api to local database
     ids = remote_ids - local_ids
     puts("#{ids.size} items to be fetched")
 
@@ -192,8 +192,28 @@ class Crawler
 
     wq.join
     stmt.close
-
     puts("[#{Time.now}] Complete crawl GW2 API, #{count} items fetched")
+
+    #remove local items not in api
+    ids = local_ids - remote_ids
+    puts("#{ids.size} items to be deleted")
+    stmt = @gw2sdb.prepare('delete from gw2s_items where id = ?')
+    wq = WorkQueue.new 10, 50
+    count = 0
+    ids.each { |id|
+      wq.enqueue_b(id) do |id|
+        begin
+          stmt.execute(id)
+          puts("[#{Time.now}] Item #{id} has been deleted successfully.")
+          count += 1
+        rescue
+          puts("[#{Time.now}] Failed when delete item #{id}, the error is #{$!}")
+        end
+      end
+    }
+
+    wq.join
+    stmt.close
   end
 
   def crawl_gw2api_recipes
@@ -251,8 +271,28 @@ class Crawler
     insert_stmt.close
     discipline_stmt.close
     ingredient_stmt.close
-
     puts("[#{Time.now}] Complete crawl GW2 API, #{count} recipes fetched")
+
+    #remove local recipes not in api
+    ids = local_ids - remote_ids
+    puts("#{ids.size} items to be deleted")
+    stmt = @gw2sdb.prepare('delete from gw2s_recipes where id = ?')
+    wq = WorkQueue.new 10, 50
+    count = 0
+    ids.each { |id|
+      wq.enqueue_b(id) do |id|
+        begin
+          stmt.execute(id)
+          puts("[#{Time.now}] Recipe #{id} has been deleted successfully.")
+          count += 1
+        rescue
+          puts("[#{Time.now}] Failed when delete recipe #{id}, the error is #{$!}")
+        end
+      end
+    }
+
+    wq.join
+    stmt.close
   end
 
   def correlate
