@@ -17,7 +17,7 @@ public class ItemDetailsActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_details_activity);
 
-        requestAd();
+        updateAd();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);

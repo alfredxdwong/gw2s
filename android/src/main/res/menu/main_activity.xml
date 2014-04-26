@@ -3,4 +3,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@+id/m_settings" android:title="@string/settings"></item>
   <item android:id="@+id/m_about" android:title="@string/about"></item>
+  <item android:id="@+id/m_removead" android:title="@string/remove_ad"></item>
 </menu>

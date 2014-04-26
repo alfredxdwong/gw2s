@@ -20,7 +20,7 @@ public class WvwDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wvw_details_activity);
 
-        requestAd();
+        updateAd();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);

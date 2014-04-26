@@ -22,7 +22,7 @@ public class DynamicEventsActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dynamic_events_activity);
 
-        requestAd();
+        updateAd();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);

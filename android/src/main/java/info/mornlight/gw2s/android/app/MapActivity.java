@@ -56,7 +56,7 @@ public class MapActivity extends BaseActivity implements LoaderManager.LoaderCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_activity);
 
-        requestAd();
+        updateAd();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);

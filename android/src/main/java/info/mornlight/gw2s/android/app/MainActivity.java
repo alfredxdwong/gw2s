@@ -1,15 +1,29 @@
 package info.mornlight.gw2s.android.app;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Bundle;
+import android.os.RemoteException;
+import android.util.Log;
 import android.view.View;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import info.mornlight.gw2s.android.R;
+import info.mornlight.gw2s.android.billing.InAppProducts;
+import info.mornlight.gw2s.android.billing.PurchasingHelper;
+import info.mornlight.gw2s.android.util.DefaultAsyncTask;
+import info.mornlight.gw2s.android.util.ToastUtils;
+import org.json.JSONException;
 import roboguice.inject.InjectView;
+import roboguice.util.SafeAsyncTask;
+
+import java.util.Set;
 
 public class MainActivity extends BaseActivity
 {
+    private static final String TAG = "MainActivity";
+
     @InjectView(R.id.dynamic_events)
     private View dynamicEvent;
 
@@ -25,12 +39,16 @@ public class MainActivity extends BaseActivity
     @InjectView(R.id.map)
     private View map;
 
+    private PurchasingHelper purchasingHelper = new PurchasingHelper();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        requestAd();
+        App.instance().loadSkuStates();
+
+        updateAd();
 
         dynamicEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +84,34 @@ public class MainActivity extends BaseActivity
                 startActivity(new Intent(MainActivity.this, MapActivity.class));
             }
         });
+
+        purchasingHelper.init(this, new PurchasingHelper.ServiceListener() {
+            @Override
+            public void onServiceConnected() {
+                refreshSkuStates();
+            }
+
+            @Override
+            public void onServiceDisconnected() {
+            }
+        });
+    }
+
+    private void refreshSkuStates() {
+        DefaultAsyncTask task = new DefaultAsyncTask<Set<String>>(this, R.string.refresh_purchasing_error) {
+            @Override
+            public Set<String> call() throws Exception {
+                return purchasingHelper.queryOwnedItems();
+            }
+
+            @Override
+            protected void onSuccess(Set<String> skus) throws Exception {
+                App app = App.instance();
+                app.updatePurchasedSkus(skus);
+            }
+        };
+
+        task.execute();
     }
 
     /*private void checkCrawler() {
@@ -93,6 +139,14 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem miRemoveAd = menu.findItem(R.id.m_removead);
+        miRemoveAd.setVisible(App.instance().needPurchaseAdRemoval());
+        miRemoveAd.setEnabled(App.instance().needPurchaseAdRemoval());
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.m_settings:
@@ -101,8 +155,37 @@ public class MainActivity extends BaseActivity
             case R.id.m_about:
                 startActivity(new Intent(this, AboutActivity.class));
                 return true;
+            case R.id.m_removead:
+                try {
+                    purchasingHelper.purchaseItem(this, InAppProducts.AdRemoval);
+                } catch (Exception e) {
+                    Log.e(TAG, "Start purchase ad_removal error", e);
+                    ToastUtils.show(this, R.string.unknown_error);
+                }
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == RequestCodes.PURCHASE_SKU) {
+                try {
+                    purchasingHelper.processPurchaseResult(data);
+                } catch (Exception e) {
+                    ToastUtils.show(this, R.string.unknown_error);
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        purchasingHelper.uninit();
     }
 }

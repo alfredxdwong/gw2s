@@ -35,7 +35,7 @@ public class RecipesActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipes_activity);
 
-        requestAd();
+        updateAd();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);

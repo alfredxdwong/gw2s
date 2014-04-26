@@ -155,6 +155,9 @@
   <string name="disciplines">Disciplines</string>
   <string name="booze">Booze</string>
   <string name="min_rating">Min Rating</string>
-    <string name="map">Map</string>
-    <string name="load_continent_error">Failed to load continents.</string>
+  <string name="map">Map</string>
+  <string name="load_continent_error">Failed to load continents.</string>
+  <string name="refresh_purchasing_error">Refresh purchasing information error.</string>
+  <string name="remove_ad">Remove Ad</string>
+  <string name="unknown_error">Unknown error.</string>
 </resources>

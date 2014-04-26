@@ -3,6 +3,7 @@ package info.mornlight.gw2s.android.app;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import info.mornlight.gw2s.android.billing.PurchasingHelper;
 import info.mornlight.gw2s.android.client.ApiClient;
 import info.mornlight.gw2s.android.db.Database;
 import info.mornlight.gw2s.android.db.DatabaseHelper;
@@ -13,6 +14,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by alfred on 5/22/13.
@@ -43,6 +46,7 @@ public class App {
     private Map<Integer, IntName> mapNames = new HashMap<Integer, IntName>();
     private Map<Integer, IntName> worldNames = new HashMap<Integer, IntName>();
     private Map<Integer, IntName> objectiveNames = new HashMap<Integer, IntName>();
+    private Map<String, SkuState> skuStates = new ConcurrentHashMap<>();
 
     public App() {
         client = new ApiClient();
@@ -92,6 +96,18 @@ public class App {
 
         //crawler = new DatabaseCrawler(db, lang);
 
+        loadPrefs();
+        loadSkuStates();
+    }
+
+    public void loadSkuStates() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+        skuStates.put(PurchasingHelper.SKU_AD_REMOVAL,
+                SkuState.valueOf(prefs.getString("sku." + PurchasingHelper.SKU_AD_REMOVAL, SkuState.Unknown.name())));
+    }
+
+    private void loadPrefs() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         activeWorldId = prefs.getInt(Prefs.ACTIVE_WORLD_ID, 0);
     }
@@ -130,5 +146,41 @@ public class App {
 
     public Database getDatabase() {
         return db;
+    }
+
+    public boolean needPurchaseAdRemoval() {
+        return getSkuState(PurchasingHelper.SKU_AD_REMOVAL) == SkuState.NotPurchased;
+    }
+
+    public SkuState getSkuState(String sku) {
+        return skuStates.get(sku);
+    }
+
+    public void updatePurchasedSkus(Set<String> skus) {
+        //first mark all items in skuStates as no purchased
+        for(Map.Entry<String, SkuState> entry : skuStates.entrySet()) {
+            entry.setValue(SkuState.NotPurchased);
+        }
+
+        //then update the map
+        for (String sku : skus) {
+            skuStates.put(sku, SkuState.Purchased);
+        }
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        for(Map.Entry<String, SkuState> entry : skuStates.entrySet()) {
+            editor.putString("sku." + entry.getKey(), entry.getValue().toString());
+        }
+        editor.commit();
+    }
+
+    public void putSkuState(String sku, SkuState state) {
+        skuStates.put(sku, state);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("sku." + sku, state.toString());
+        editor.commit();
+
     }
 }
