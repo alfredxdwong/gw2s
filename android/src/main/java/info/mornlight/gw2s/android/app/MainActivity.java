@@ -95,6 +95,9 @@ public class MainActivity extends BaseActivity
             public void onServiceDisconnected() {
             }
         });
+
+        AppRater rater = new AppRater(getResources().getText(R.string.app_name).toString(), getPackageName());
+        rater.appLaunched(this);
     }
 
     private void refreshSkuStates() {
