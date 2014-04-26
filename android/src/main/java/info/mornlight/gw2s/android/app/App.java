@@ -3,6 +3,7 @@ package info.mornlight.gw2s.android.app;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import info.mornlight.gw2s.android.billing.InAppProducts;
 import info.mornlight.gw2s.android.billing.PurchasingHelper;
 import info.mornlight.gw2s.android.client.ApiClient;
 import info.mornlight.gw2s.android.db.Database;
@@ -103,8 +104,8 @@ public class App {
     public void loadSkuStates() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-        skuStates.put(PurchasingHelper.SKU_AD_REMOVAL,
-                SkuState.valueOf(prefs.getString("sku." + PurchasingHelper.SKU_AD_REMOVAL, SkuState.Unknown.name())));
+        skuStates.put(InAppProducts.AdRemoval,
+                SkuState.valueOf(prefs.getString("sku." + InAppProducts.AdRemoval, SkuState.Unknown.name())));
     }
 
     private void loadPrefs() {
@@ -149,7 +150,7 @@ public class App {
     }
 
     public boolean needPurchaseAdRemoval() {
-        return getSkuState(PurchasingHelper.SKU_AD_REMOVAL) == SkuState.NotPurchased;
+        return getSkuState(InAppProducts.AdRemoval) == SkuState.NotPurchased;
     }
 
     public SkuState getSkuState(String sku) {

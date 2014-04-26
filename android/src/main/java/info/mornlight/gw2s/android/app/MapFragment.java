@@ -151,7 +151,7 @@ public class MapFragment extends LoaderFragment<ContinentFloor, View> {
         //https://tiles.guildwars2.com/{continent_id}/{floor}/{zoom}/{x}/{y}.jpg
         ITileSource tileSource = new XYTileSource(continent.getName() + " tiles",
                 null, continent.getMinZoom(), continent.getMaxZoom(), 256, ".jpg",
-                String.format("https://tiles.guildwars2.com/%s/1/", continent.getId()));
+                new String[] { String.format("https://tiles.guildwars2.com/%s/1/", continent.getId()) });
 
         mapview.setTileSource(tileSource);
         mapview.setMultiTouchControls(true);

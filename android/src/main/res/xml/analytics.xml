@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<resources xmlns:tools="http://schemas.android.com/tools"
-        tools:ignore="TypographyDashes">
+<resources>
+  <integer name="ga_sessionTimeout">300</integer>
+
   <!--Replace placeholder ID with your tracking ID-->
   <string name="ga_trackingId">UA-41444784-1</string>
 

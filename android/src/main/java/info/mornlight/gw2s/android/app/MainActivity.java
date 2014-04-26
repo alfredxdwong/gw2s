@@ -176,6 +176,18 @@ public class MainActivity extends BaseActivity
             if (requestCode == RequestCodes.PURCHASE_SKU) {
                 try {
                     purchasingHelper.processPurchaseResult(data);
+
+                    //TODO send purchase info to google analytics
+                    /*getTracker().send(
+                    new HitBuilders.ItemBuilder()
+                            .setTransactionId(getOrderId())
+                            .setName(getItemName(1))
+                            .setSku(getItemSku(1))
+                            .setCategory(getItemCategory(1))
+                            .setPrice(getItemPrice(getView(), 1))
+                            .setQuantity(getItemQuantity(getView(), 1))
+                            .setCurrencyCode("USD")
+                            .build());)*/
                 } catch (Exception e) {
                     ToastUtils.show(this, R.string.unknown_error);
                 }

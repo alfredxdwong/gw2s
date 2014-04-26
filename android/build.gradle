@@ -1,21 +1,28 @@
 apply plugin: 'android'
 
+repositories {
+    maven { url "http://jzaccone.github.io/SlidingMenu-aar" }
+}
+
 dependencies {
-    compile 'com.google.android.gms:play-services:4.0.30',
+    compile 'com.google.android.gms:play-services:4.3.23',
         'com.android.support:support-v4:13.0.0'
 
     compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar',
+        'com.readystatesoftware.sqliteasset:sqliteassethelper:+',
+        'com.nostra13.universalimageloader:universal-image-loader:1.9.1',
         'org.roboguice:roboguice:2.0',
         'com.github.rtyley:roboguice-sherlock:1.5',
-        'com.fasterxml.jackson.core:jackson-core:2.2.1',
-        'com.fasterxml.jackson.core:jackson-databind:2.2.1',
-        'org.apache.commons:commons-lang3:3.1',
+        'com.fasterxml.jackson.core:jackson-core:2.3.3',
+        'com.fasterxml.jackson.core:jackson-databind:2.3.3',
+        'org.apache.commons:commons-lang3:3.3.2',
         'commons-collections:commons-collections:3.2.1',
         'commons-io:commons-io:2.4',
-        'org.osmdroid:osmdroid-android:4.0',
-        'eu.lp0.slf4j:slf4j-android:1.7.5-7',
-        project(':lib:SlidingMenu'),
-        fileTree(dir: '../lib', include: '*.jar')
+        'org.osmdroid:osmdroid-android:4.1',
+        'org.slf4j:slf4j-android:1.7.7',
+        'com.jeremyfeinstein.slidingmenu:library:1.3@aar'
+        //project(':lib:SlidingMenu')
+        //fileTree(dir: '../lib', include: '*.jar')
 }
 
 apply from: '../android.gradle'
