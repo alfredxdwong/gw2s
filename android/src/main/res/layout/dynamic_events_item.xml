@@ -13,6 +13,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@color/text_white"
+            android:textStyle="bold"
             android:text="event name"></TextView>
   <LinearLayout android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -29,8 +30,12 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:textSize="14dp"
+              android:textColor="@color/text_white"
+              android:background="@drawable/round_corner"
+              android:textStyle="bold"
+              android:paddingLeft="3dp"
+              android:paddingRight="3dp"
               android:text="state">
-
     </TextView>
 
   </LinearLayout>

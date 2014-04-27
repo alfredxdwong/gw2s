@@ -1,6 +1,9 @@
 package info.mornlight.gw2s.android.app;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.Loader;
@@ -281,29 +284,38 @@ public class DynamicEventsFragment extends RefreshableFragment<Map<String, Event
             mapName.setText(item.getMapName());
             eventName.setText(item.getEventName());
 
-            int color = R.color.event_active;
+            int bgColorId = R.color.event_active;
+            int textColorId = R.color.text_white;
             switch (item.getState()) {
+                case Inactive:
+                    bgColorId = R.color.event_inactive;
+                    textColorId = R.color.text_black;
+                    break;
                 case Active:
-                    color = R.color.event_active;
+                    bgColorId = R.color.event_active;
                     break;
                 case Fail:
-                    color = R.color.event_fail;
+                    bgColorId = R.color.event_fail;
                     break;
                 case Invalid:
-                    color = R.color.event_invalid;
+                    bgColorId = R.color.event_invalid;
                     break;
                 case Preparation:
-                    color = R.color.event_preparation;
+                    bgColorId = R.color.event_preparation;
+                    textColorId = R.color.text_black;
                     break;
                 case Success:
-                    color = R.color.event_success;
+                    bgColorId = R.color.event_success;
+                    textColorId = R.color.text_black;
                     break;
                 case Warmup:
-                    color = R.color.event_warmup;
+                    bgColorId = R.color.event_warmup;
+                    textColorId = R.color.text_black;
                     break;
-
             }
-            eventState.setTextColor(getResources().getColor(color));
+            int color = getResources().getColor(bgColorId);
+            eventState.getBackground().setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+            eventState.setTextColor(getResources().getColor(textColorId));
             eventState.setText(item.getState().toString());
         }
     }
