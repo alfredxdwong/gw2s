@@ -111,6 +111,13 @@ public class MainActivity extends BaseActivity
             protected void onSuccess(Set<String> skus) throws Exception {
                 App app = App.instance();
                 app.updatePurchasedSkus(skus);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateAd();
+                    }
+                });
             }
         };
 
@@ -179,6 +186,8 @@ public class MainActivity extends BaseActivity
             if (requestCode == RequestCodes.PURCHASE_SKU) {
                 try {
                     purchasingHelper.processPurchaseResult(data);
+                    updateAd();
+
 
                     //TODO send purchase info to google analytics
                     /*getTracker().send(
