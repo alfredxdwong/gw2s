@@ -7,6 +7,7 @@ public class Consumable extends ItemBase {
     private ConsumableType type;
     private int durationMs;
     private String description;
+    private int recipeId;
 
 
     public Consumable() {

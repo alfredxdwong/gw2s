@@ -268,6 +268,10 @@ public class ItemDetailsFragment extends LoaderFragment<ItemDetailsFragment.Item
             ArmorView view = new ArmorView(getActivity());
             view.update((Armor) details);
             return view;
+        } else if (details instanceof Consumable) {
+            ConsumableView view = new ConsumableView(getActivity());
+            view.update((Consumable) details);
+            return view;
         }
 
         return null;
@@ -314,6 +318,31 @@ public class ItemDetailsFragment extends LoaderFragment<ItemDetailsFragment.Item
 
             weightClass.setText(getResources().getString(R.string.weight_class) + " " + ViewHelper.toString(armor.getWeightClass()));
             defense.setText(Integer.toString(armor.getDefense()));
+        }
+    }
+
+    static class ConsumableView extends LinearLayout {
+        public ConsumableView(Context context) {
+            super(context);
+
+            LayoutInflater  inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            inflater.inflate(R.layout.item_details_consumable, this, true);
+        }
+
+        public void update(Consumable item) {
+            if (item.getDurationMs() == 0) {
+                findViewById(R.id.duration_layout).setVisibility(View.GONE);
+            } else {
+                TextView duration = (TextView) findViewById(R.id.duration);
+                duration.setText(Integer.toString(item.getDurationMs() / 1000));
+            }
+
+            if (item.getDescription() == null || item.getDescription().isEmpty()) {
+                findViewById(R.id.description).setVisibility(View.GONE);
+            } else {
+                TextView description = (TextView) findViewById(R.id.description);
+                description.setText(item.getDescription());
+            }
         }
     }
 }
