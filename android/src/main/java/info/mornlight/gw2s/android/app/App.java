@@ -3,6 +3,7 @@ package info.mornlight.gw2s.android.app;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import info.mornlight.gw2s.android.billing.InAppProducts;
 import info.mornlight.gw2s.android.billing.PurchasingHelper;
 import info.mornlight.gw2s.android.client.ApiClient;
@@ -12,6 +13,7 @@ import info.mornlight.gw2s.android.model.IntName;
 import info.mornlight.gw2s.android.model.StringName;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,9 +84,20 @@ public class App {
 
     public void ensureWorldNames() throws IOException {
         if(worldNames.isEmpty()) {
-            List<IntName> intNames = client.listWorldNames(lang);
-            for(IntName name : intNames) {
-                worldNames.put(name.getId(), name);
+            InputStream is = context.getAssets().open("gw2_worlds.json");
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                Map<String, Object>[] worldInfos = mapper.readValue(is, Map[].class);
+                for(Map<String, Object> worldInfo : worldInfos) {
+                    int id = (Integer)worldInfo.get("world_id");
+                    String name = (String)worldInfo.get("name_en");
+                    worldNames.put(id, new IntName(id, name));
+                }
+            } finally {
+                if (is != null) {
+                    is.close();
+                    is = null;
+                }
             }
         }
     }

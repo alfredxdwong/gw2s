@@ -22,69 +22,6 @@
                 android:layout_weight="1">
 
             <LinearLayout
-                    android:orientation="vertical"
-                    android:id="@+id/dynamic_events"
-                    android:padding="5sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:background="@drawable/clickable">
-
-                <ImageView
-                        android:src="@drawable/logo_dynamic_events"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1">
-
-                </ImageView>
-
-                <TextView
-                        android:text="@string/dynamic_events"
-                        style="@style/caption_text">
-
-                </TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                    android:id="@+id/wvw"
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="5sp"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:background="@drawable/clickable">
-
-                <ImageView
-                        android:src="@drawable/logo_wvw"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1">
-
-                </ImageView>
-
-                <TextView
-                        android:text="@string/world_vs_world"
-                        style="@style/caption_text">
-
-                </TextView>
-
-            </LinearLayout>
-        </TableRow>
-
-        <TableRow
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_weight="1">
-
-            <LinearLayout
                     android:id="@+id/items"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -145,6 +82,33 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="1">
 
+          <LinearLayout
+              android:id="@+id/wvw"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:padding="5sp"
+              android:gravity="center"
+              android:layout_gravity="center"
+              android:background="@drawable/clickable">
+
+            <ImageView
+                android:src="@drawable/logo_wvw"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1">
+
+            </ImageView>
+
+            <TextView
+                android:text="@string/world_vs_world"
+                style="@style/caption_text">
+
+            </TextView>
+
+          </LinearLayout>
+
             <LinearLayout
                     android:id="@+id/map"
                     android:orientation="vertical"
@@ -170,19 +134,6 @@
                 </TextView>
 
             </LinearLayout>
-
-            <LinearLayout
-                    android:id="@+id/build"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="5sp"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:background="@drawable/clickable">
-            </LinearLayout>
-
 
         </TableRow>
     </TableLayout>

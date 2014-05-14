@@ -39,6 +39,7 @@ public class ApiClient extends JsonClient {
         public Map<String, Continent> continents;
     }
 
+    @Deprecated
     public List<Event> listEvents(int worldId) throws IOException {
         //https://api.guildwars2.com/v1/events.json?world_id=1001
         String url = "https://api.guildwars2.com/v1/events.json?world_id=" + worldId;
@@ -49,6 +50,7 @@ public class ApiClient extends JsonClient {
         return wrap.events;
     }
 
+    @Deprecated
     public List<EventDetails> listEventDetails() throws IOException {
         //https://api.guildwars2.com/v1/event_details.json
         String url = "https://api.guildwars2.com/v1/event_details.json";
@@ -57,6 +59,7 @@ public class ApiClient extends JsonClient {
         return new ArrayList<EventDetails>(wrap.events.values());
     }
 
+    @Deprecated
     public List<IntName> listWorldNames(String lang) throws IOException {
         String url = "https://api.guildwars2.com/v1/world_names.json";
         return listIntNames(url, lang);
@@ -80,6 +83,7 @@ public class ApiClient extends JsonClient {
         return items;
     }
 
+    @Deprecated
     public List<StringName> listEventNames(String lang) throws IOException {
         String url = "https://api.guildwars2.com/v1/event_names.json";
         return listStringNames(url, lang);

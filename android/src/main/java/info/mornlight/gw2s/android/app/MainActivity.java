@@ -24,9 +24,6 @@ public class MainActivity extends BaseActivity
 {
     private static final String TAG = "MainActivity";
 
-    @InjectView(R.id.dynamic_events)
-    private View dynamicEvent;
-
     @InjectView(R.id.wvw)
     private View wvw;
 
@@ -49,13 +46,6 @@ public class MainActivity extends BaseActivity
         App.instance().loadSkuStates();
 
         updateAd();
-
-        dynamicEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, DynamicEventsActivity.class));
-            }
-        });
 
         wvw.setOnClickListener(new View.OnClickListener() {
             @Override
