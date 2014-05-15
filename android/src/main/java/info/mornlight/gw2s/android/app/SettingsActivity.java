@@ -18,7 +18,7 @@ public class SettingsActivity extends SherlockPreferenceActivity
         actionBar.setTitle(R.string.settings);
 
         addPreferencesFromResource(R.xml.settings);
-        getListView().setBackgroundResource(R.drawable.background_parchment);
+        getListView().setBackgroundResource(R.drawable.background);
         getListView().setCacheColorHint(getResources().getColor(android.R.color.transparent));
     }
 
