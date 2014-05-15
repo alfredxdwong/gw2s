@@ -187,8 +187,8 @@ public class ItemDetailsFragment extends LoaderFragment<ItemDetailsFragment.Item
             specificView.addView(subView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         }
 
-        if(details != null && details instanceof InfixUpgradable && ((InfixUpgradable) details).getInfixUpgrade() != null) {
-            InfixUpgradable infix = (InfixUpgradable)details;
+        if(details != null && details instanceof UpgradableItem && ((UpgradableItem) details).getInfixUpgrade() != null) {
+            UpgradableItem infix = (UpgradableItem)details;
 
             //buff description
             Buff buff = infix.getInfixUpgrade().getBuff();
@@ -229,8 +229,9 @@ public class ItemDetailsFragment extends LoaderFragment<ItemDetailsFragment.Item
             infixUpgrade.setVisibility(View.GONE);
         }
 
-        if(!item.getDescription().isEmpty()) {
-            Spanned spanned = Html.fromHtml(item.getDescription());
+        String desc = item.getDescription();
+        if(desc != null && !desc.isEmpty()) {
+            Spanned spanned = Html.fromHtml(desc);
             description.setText(spanned);
         } else {
             description.setVisibility(View.GONE);

@@ -6,6 +6,7 @@ package info.mornlight.gw2s.android.model.item;
 public class ItemDetails extends ItemIndex {
     private String description;
     private int vendorValue;
+    protected int defaultSkin = -1;
     private GameType[] gameTypes;
     private ItemFlag[] flags;
     private Restriction[] restrictions;
@@ -55,6 +56,8 @@ public class ItemDetails extends ItemIndex {
     public int getVendorValue() {
         return vendorValue;
     }
+
+    public int getDefaultSkin() { return defaultSkin; }
 
     public GameType[] getGameTypes() {
         return gameTypes;

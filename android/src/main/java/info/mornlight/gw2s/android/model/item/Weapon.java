@@ -3,7 +3,7 @@ package info.mornlight.gw2s.android.model.item;
 /**
  * Created by alfred on 5/22/13.
  */
-public class Weapon extends InfusableItem {
+public class Weapon extends UpgradableItem {
     private WeaponType type;
     private DamageType damageType;
     private int minPower;

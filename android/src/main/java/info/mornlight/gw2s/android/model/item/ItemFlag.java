@@ -7,6 +7,7 @@ public enum ItemFlag {
     HideSuffix,
     NoSell,
     AccountBound,
+    AccountBindOnUse,
     SoulBindOnUse,
     NoSalvage,
     SoulbindOnAcquire,

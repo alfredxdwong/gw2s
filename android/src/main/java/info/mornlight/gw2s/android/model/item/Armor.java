@@ -1,6 +1,6 @@
 package info.mornlight.gw2s.android.model.item;
 
-public class Armor extends InfusableItem {
+public class Armor extends UpgradableItem {
     private ArmorType type;
     private WeightClass weightClass;
     private int defense;

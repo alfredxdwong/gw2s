@@ -3,11 +3,10 @@ package info.mornlight.gw2s.android.model.item;
 /**
  * Created by alfred on 5/28/13.
  */
-public class UpgradeComponent extends ItemBase implements InfixUpgradable {
+public class UpgradeComponent extends UpgradableItem {
     private UpgradeComponentType type;
     private UpgradeComponentFlag[] flags;
     private InfusionFlag[] infusionUpgradeFlags;
-    private InfixUpgrade infixUpgrade;
     private String suffix;
 
     private String[] bonuses;
@@ -22,10 +21,6 @@ public class UpgradeComponent extends ItemBase implements InfixUpgradable {
 
     public InfusionFlag[] getInfusionUpgradeFlags() {
         return infusionUpgradeFlags;
-    }
-
-    public InfixUpgrade getInfixUpgrade() {
-        return infixUpgrade;
     }
 
     public String getSuffix() {
