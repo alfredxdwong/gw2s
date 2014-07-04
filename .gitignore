@@ -9,3 +9,4 @@
 /signing.properties
 *.class
 /android/build/
+/build/
