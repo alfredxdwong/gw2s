@@ -4,7 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.content.Loader;
+import android.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.BaseAdapter;

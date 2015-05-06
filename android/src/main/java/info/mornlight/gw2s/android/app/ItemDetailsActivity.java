@@ -1,14 +1,12 @@
 package info.mornlight.gw2s.android.app;
 
+import android.app.ActionBar;
 import android.os.Bundle;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.MenuItem;
+import android.view.MenuItem;
 import info.mornlight.gw2s.android.R;
-import roboguice.inject.InjectFragment;
 
 public class ItemDetailsActivity extends BaseActivity
 {
-    @InjectFragment(R.id.fragment)
     ItemDetailsFragment fragment;
 
     /** Called when the activity is first created. */
@@ -17,9 +15,9 @@ public class ItemDetailsActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_details_activity);
 
-        updateAd();
+        fragment = (ItemDetailsFragment) getFragmentManager().findFragmentById(R.id.fragment);
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.item_details);

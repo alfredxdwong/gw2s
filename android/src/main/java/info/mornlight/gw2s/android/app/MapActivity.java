@@ -1,25 +1,23 @@
 package info.mornlight.gw2s.android.app;
 
+import android.app.ActionBar;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
+import android.app.LoaderManager;
+import android.content.Loader;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.model.map.Continent;
 import info.mornlight.gw2s.android.ui.ItemListAdapter;
 import info.mornlight.gw2s.android.ui.ItemView;
 import info.mornlight.gw2s.android.ui.ThrowableLoader;
-import roboguice.inject.InjectFragment;
 
 import java.util.List;
 
 public class MapActivity extends BaseActivity implements LoaderManager.LoaderCallbacks<List<Continent>>, ActionBar.OnNavigationListener {
-    @InjectFragment(R.id.fragment)
     private MapFragment fragment;
 
     private ContinentAdapter adapter;
@@ -56,20 +54,20 @@ public class MapActivity extends BaseActivity implements LoaderManager.LoaderCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.map_activity);
 
-        updateAd();
+        fragment = (MapFragment) getFragmentManager().findFragmentById(R.id.fragment);
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.map);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
-        getSupportLoaderManager().initLoader(0, null, this);
+        getLoaderManager().initLoader(0, null, this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.map_activity, menu);
+        getMenuInflater().inflate(R.menu.map_activity, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -95,19 +93,19 @@ public class MapActivity extends BaseActivity implements LoaderManager.LoaderCal
     }
 
     @Override
-    public void onLoadFinished(android.support.v4.content.Loader<List<Continent>> listLoader, List<Continent> continents) {
+    public void onLoadFinished(Loader<List<Continent>> listLoader, List<Continent> continents) {
         if(continents == null) {
             return;
         }
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         adapter = new ContinentAdapter(getLayoutInflater());
         adapter.setItems(continents);
         actionBar.setListNavigationCallbacks(adapter, this);
     }
 
     @Override
-    public void onLoaderReset(android.support.v4.content.Loader<List<Continent>> listLoader) {
+    public void onLoaderReset(android.content.Loader<List<Continent>> listLoader) {
 
     }
 

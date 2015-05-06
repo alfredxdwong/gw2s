@@ -1,7 +1,7 @@
 package info.mornlight.gw2s.android.app;
 
 import android.os.Bundle;
-import android.support.v4.content.Loader;
+import android.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -86,7 +86,7 @@ public class WvwFragment extends RefreshableFragment<List<WvwMatch>, ListView> {
         
         moveActiveWorldToFirst(this.data, App.instance().getActiveWorldId());
 
-        ItemListAdapter<WvwMatch, WvwMatchItemView> adapter = new ItemListAdapter<WvwMatch, WvwMatchItemView>(R.layout.wvw_item, getSherlockActivity().getLayoutInflater()) {
+        ItemListAdapter<WvwMatch, WvwMatchItemView> adapter = new ItemListAdapter<WvwMatch, WvwMatchItemView>(R.layout.wvw_item, getActivity().getLayoutInflater()) {
             @Override
             protected WvwMatchItemView createView(int position, View view) {
                 return new WvwMatchItemView(view);

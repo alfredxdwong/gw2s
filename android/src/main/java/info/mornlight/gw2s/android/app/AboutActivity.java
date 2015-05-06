@@ -1,21 +1,18 @@
 package info.mornlight.gw2s.android.app;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.os.Bundle;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.MenuItem;
-import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockActivity;
+import android.view.MenuItem;
 import info.mornlight.gw2s.android.R;
 
-/**
- * Created by alfred on 5/26/13.
- */
-public class AboutActivity extends RoboSherlockActivity {
+public class AboutActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_activity);
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.about);

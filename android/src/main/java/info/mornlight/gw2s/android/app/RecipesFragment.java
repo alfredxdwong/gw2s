@@ -5,13 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.content.Loader;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.content.Loader;
+import android.view.*;
 import android.widget.*;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.db.Database;
@@ -151,12 +147,12 @@ public class RecipesFragment extends RefreshableFragment<Cursor, ListView> imple
     }
 
     class RecipeIndexView extends ItemView<RecipeIndex> {
-        ImageView image;
-        TextView name;
-        TextView type;
-        TextView discipline;
-        TextView rating;
-        TextView rarity;
+        private ImageView image;
+        private TextView name;
+        private TextView type;
+        private TextView discipline;
+        private TextView rating;
+        private TextView rarity;
 
         public RecipeIndexView(View view) {
             super(view);

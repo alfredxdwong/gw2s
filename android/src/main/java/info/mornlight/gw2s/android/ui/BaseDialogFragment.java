@@ -1,25 +1,19 @@
 package info.mornlight.gw2s.android.ui;
 
-import static android.app.Activity.RESULT_CANCELED;
-
-import android.app.AlertDialog;
-import android.app.Dialog;
+import android.app.*;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockFragmentActivity;
-import roboguice.fragment.RoboDialogFragment;
+import butterknife.ButterKnife;
+
+import static android.app.Activity.RESULT_CANCELED;
 
 /**
  * Base dialog fragment helper
  */
-public abstract class BaseDialogFragment extends RoboDialogFragment implements
+public abstract class BaseDialogFragment extends DialogFragment implements
         OnClickListener {
 
     /**
@@ -39,9 +33,9 @@ public abstract class BaseDialogFragment extends RoboDialogFragment implements
 
     protected DialogResultListener listener;
 
-    protected static void show(RoboSherlockFragmentActivity activity,
+    protected static void show(Activity activity,
                                BaseDialogFragment fragment, String tag) {
-        FragmentManager manager = activity.getSupportFragmentManager();
+        FragmentManager manager = activity.getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         Fragment current = manager.findFragmentByTag(tag);
         if (current != null)
@@ -114,11 +108,12 @@ public abstract class BaseDialogFragment extends RoboDialogFragment implements
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(getTitle())
                 .setMessage(getMessage())
-                .setCancelable(true)
-                .setOnCancelListener(this);
+                .setCancelable(true);
         AlertDialog dialog = builder.create();
 
         View view = onCreateContentView(dialog, getActivity().getLayoutInflater());
+        ButterKnife.inject(this, view);
+
         dialog.setView(view);
 
         return dialog;

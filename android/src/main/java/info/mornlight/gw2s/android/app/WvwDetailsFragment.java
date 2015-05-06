@@ -3,11 +3,12 @@ package info.mornlight.gw2s.android.app;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.content.Loader;
+import android.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import butterknife.InjectView;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.model.*;
 import info.mornlight.gw2s.android.model.wvw.WvwMap;
@@ -15,7 +16,6 @@ import info.mornlight.gw2s.android.model.wvw.WvwMapType;
 import info.mornlight.gw2s.android.model.wvw.WvwMatchDetails;
 import info.mornlight.gw2s.android.model.wvw.WvwObjective;
 import info.mornlight.gw2s.android.ui.*;
-import roboguice.inject.InjectView;
 
 import java.util.List;
 import java.util.Map;
@@ -35,25 +35,25 @@ public class WvwDetailsFragment extends RefreshableFragment<WvwMatchDetails, Vie
     private static final int GREEN = 2;
 
     @InjectView(R.id.score_bar_red)
-    private TextView scoreBarRed;
+    protected TextView scoreBarRed;
     @InjectView(R.id.score_bar_blue)
-    private TextView scoreBarBlue;
+    protected TextView scoreBarBlue;
     @InjectView(R.id.score_bar_green)
-    private TextView scoreBarGreen;
+    protected TextView scoreBarGreen;
     @InjectView(R.id.red_world)
-    private TextView redWorld;
+    protected TextView redWorld;
     @InjectView(R.id.blue_world)
-    private TextView blueWorld;
+    protected TextView blueWorld;
     @InjectView(R.id.green_world)
-    private TextView greenWorld;
+    protected TextView greenWorld;
     @InjectView(R.id.score_red)
-    private TextView scoreRed;
+    protected TextView scoreRed;
     @InjectView(R.id.score_blue)
-    private TextView scoreBlue;
+    protected TextView scoreBlue;
     @InjectView(R.id.score_green)
-    private TextView scoreGreen;
+    protected TextView scoreGreen;
     @InjectView(R.id.maps)
-    private ExpandableListView maps;
+    protected ExpandableListView maps;
 
     public void update(String matchId, int redWorldId, int blueWorldId, int greenWorldId) {
         this.matchId = matchId;
@@ -300,7 +300,7 @@ public class WvwDetailsFragment extends RefreshableFragment<WvwMatchDetails, Vie
 
     private void updateMapsList() {
         if(maps.getExpandableListAdapter() == null) {
-            WvwMapAdapter adapter = new WvwMapAdapter(getSherlockActivity().getLayoutInflater(), data.getMaps());
+            WvwMapAdapter adapter = new WvwMapAdapter(getActivity().getLayoutInflater(), data.getMaps());
             maps.setAdapter(adapter);
         } else {
             WvwMapAdapter adapter = (WvwMapAdapter) maps.getExpandableListAdapter();

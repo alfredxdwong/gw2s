@@ -40,7 +40,7 @@ public class SelectWorldFragment extends BaseFragment<List<IntName>, ListView> {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        IndicatedAsyncTask<Void> task = new IndicatedAsyncTask<Void>(getSherlockActivity(), R.string.initializing) {
+        IndicatedAsyncTask<Void, Void> task = new IndicatedAsyncTask<Void, Void>(getActivity(), R.string.initializing) {
             @Override
             public Void call() throws Exception {
                 App.instance().ensureWorldNames();
@@ -48,7 +48,7 @@ public class SelectWorldFragment extends BaseFragment<List<IntName>, ListView> {
             }
 
             @Override
-            protected void onSuccess(Void aVoid) throws Exception {
+            protected void onSuccess(Void aVoid) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -103,7 +103,7 @@ public class SelectWorldFragment extends BaseFragment<List<IntName>, ListView> {
     }
 
     private ListAdapter createAdatper(List<IntName> names) {
-        ItemListAdapter<IntName, WorldItemView> adapter = new ItemListAdapter<IntName, WorldItemView>(R.layout.select_world_item, getSherlockActivity().getLayoutInflater()) {
+        ItemListAdapter<IntName, WorldItemView> adapter = new ItemListAdapter<IntName, WorldItemView>(R.layout.select_world_item, getActivity().getLayoutInflater()) {
             @Override
             protected WorldItemView createView(int position, View view) {
                 return new WorldItemView(view);

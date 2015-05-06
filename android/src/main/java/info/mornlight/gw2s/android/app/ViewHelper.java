@@ -3,16 +3,14 @@ package info.mornlight.gw2s.android.app;
 import android.content.Context;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.model.item.*;
-import net.sf.cglib.core.CollectionUtils;
-import net.sf.cglib.core.Transformer;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Transformer;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by alfred on 5/29/13.
- */
 public class ViewHelper {
     public static String formatAttributeModifier(AttributeModifier attr, Context ctx) {
         return "+" + attr.getModifier() + " " + toString(attr.getAttribute(), ctx);
@@ -171,17 +169,17 @@ public class ViewHelper {
     }
 
     public static String makeString(ItemFlag[] flags, final Context ctx) {
-        List<String> names = CollectionUtils.transform(Arrays.asList(flags), new Transformer() {
+        Collection<String> names = CollectionUtils.transformedCollection(Arrays.asList(flags), new Transformer() {
             @Override
             public Object transform(Object o) {
-                return getString((ItemFlag)o, ctx);
+                return getString((ItemFlag) o, ctx);
             }
         });
         return StringUtils.join(names, "  ");
     }
 
     public static String makeString(Discipline[] disciplines, final Context ctx) {
-        List<String> names = CollectionUtils.transform(Arrays.asList(disciplines), new Transformer() {
+        Collection<String> names = CollectionUtils.transformedCollection(Arrays.asList(disciplines), new Transformer() {
             @Override
             public Object transform(Object o) {
                 return o.toString();

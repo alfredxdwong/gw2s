@@ -1,5 +1,6 @@
 package info.mornlight.gw2s.android.ui;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,19 +11,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.github.rtyley.android.sherlock.roboguice.fragment.RoboSherlockFragment;
+import butterknife.ButterKnife;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.util.ToastUtils;
 import info.mornlight.gw2s.android.util.ViewUtils;
 
-/***
- * The base fragment provides content view, progress bar, and empty view support
- * @author alfred
- *
- * @param <D>
- * @param <V>
- */
-public abstract class BaseFragment<D, V extends View> extends RoboSherlockFragment {
+public abstract class BaseFragment<D, V extends View> extends Fragment {
     protected V contentView;
 	protected D data;
 	
@@ -55,6 +49,8 @@ public abstract class BaseFragment<D, V extends View> extends RoboSherlockFragme
     	contentView.setVisibility(View.GONE);
     	RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         v.addView(contentView, 0, params);
+
+        ButterKnife.inject(this, v);
         
         return v;
     }

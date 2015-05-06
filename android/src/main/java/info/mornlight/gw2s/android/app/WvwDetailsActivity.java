@@ -1,18 +1,13 @@
 package info.mornlight.gw2s.android.app;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.MenuItem;
+import android.view.MenuItem;
 import info.mornlight.gw2s.android.R;
-import roboguice.inject.InjectFragment;
 
-/**
- * Created by alfred on 5/24/13.
- */
 public class WvwDetailsActivity extends BaseActivity {
-    @InjectFragment(R.id.fragment)
-    WvwDetailsFragment fragment;
+    private WvwDetailsFragment fragment;
 
     /** Called when the activity is first created. */
     @Override
@@ -20,9 +15,9 @@ public class WvwDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wvw_details_activity);
 
-        updateAd();
+        fragment = (WvwDetailsFragment) getFragmentManager().findFragmentById(R.id.fragment);
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.world_vs_world);

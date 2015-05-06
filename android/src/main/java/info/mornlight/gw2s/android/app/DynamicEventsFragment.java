@@ -1,12 +1,10 @@
 package info.mornlight.gw2s.android.app;
 
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.content.Loader;
+import android.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

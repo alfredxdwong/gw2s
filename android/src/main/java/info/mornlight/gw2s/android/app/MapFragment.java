@@ -2,11 +2,11 @@ package info.mornlight.gw2s.android.app;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.content.Loader;
+import android.content.Loader;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import butterknife.InjectView;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.model.map.*;
 import info.mornlight.gw2s.android.ui.LoaderFragment;
@@ -22,16 +22,14 @@ import org.osmdroid.util.TileSystem;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedOverlay;
-import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
-import roboguice.inject.InjectView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MapFragment extends LoaderFragment<ContinentFloor, View> {
     @InjectView(R.id.mapview)
-    private MapView mapview;
+    protected MapView mapview;
 
     private Continent continent;
 
@@ -173,7 +171,7 @@ public class MapFragment extends LoaderFragment<ContinentFloor, View> {
         mapview.getOverlayManager().clear();
 
         //load the continent floor
-        getSherlockActivity().getSupportLoaderManager().initLoader(1, null, this);
+        getActivity().getLoaderManager().initLoader(1, null, this);
     }
 
     @Override

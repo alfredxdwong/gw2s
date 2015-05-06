@@ -2,21 +2,18 @@ package info.mornlight.gw2s.android.app;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.os.Bundle;
-import android.os.RemoteException;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.billing.InAppProducts;
 import info.mornlight.gw2s.android.billing.PurchasingHelper;
 import info.mornlight.gw2s.android.util.DefaultAsyncTask;
 import info.mornlight.gw2s.android.util.ToastUtils;
-import org.json.JSONException;
-import roboguice.inject.InjectView;
-import roboguice.util.SafeAsyncTask;
 
 import java.util.Set;
 
@@ -25,16 +22,16 @@ public class MainActivity extends BaseActivity
     private static final String TAG = "MainActivity";
 
     @InjectView(R.id.wvw)
-    private View wvw;
+    protected View wvw;
 
     @InjectView(R.id.items)
-    private View items;
+    protected View items;
 
     @InjectView(R.id.recipes)
-    private View recipes;
+    protected View recipes;
 
     @InjectView(R.id.map)
-    private View map;
+    protected View map;
 
     private PurchasingHelper purchasingHelper = new PurchasingHelper();
 
@@ -42,10 +39,9 @@ public class MainActivity extends BaseActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        ButterKnife.inject(this);
 
         App.instance().loadSkuStates();
-
-        updateAd();
 
         wvw.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,23 +87,16 @@ public class MainActivity extends BaseActivity
     }
 
     private void refreshSkuStates() {
-        DefaultAsyncTask task = new DefaultAsyncTask<Set<String>>(this, R.string.refresh_purchasing_error) {
+        DefaultAsyncTask task = new DefaultAsyncTask<Void, Set<String>>(this, R.string.refresh_purchasing_error) {
             @Override
             public Set<String> call() throws Exception {
                 return purchasingHelper.queryOwnedItems();
             }
 
             @Override
-            protected void onSuccess(Set<String> skus) throws Exception {
+            protected void onSuccess(Set<String> skus) {
                 App app = App.instance();
                 app.updatePurchasedSkus(skus);
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateAd();
-                    }
-                });
             }
         };
 
@@ -133,7 +122,7 @@ public class MainActivity extends BaseActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu optionMenu) {
-        getSupportMenuInflater().inflate(R.menu.main_activity, optionMenu);
+        getMenuInflater().inflate(R.menu.main_activity, optionMenu);
 
         return true;
     }
@@ -176,8 +165,6 @@ public class MainActivity extends BaseActivity
             if (requestCode == RequestCodes.PURCHASE_SKU) {
                 try {
                     purchasingHelper.processPurchaseResult(data);
-                    updateAd();
-
 
                     //TODO send purchase info to google analytics
                     /*getTracker().send(

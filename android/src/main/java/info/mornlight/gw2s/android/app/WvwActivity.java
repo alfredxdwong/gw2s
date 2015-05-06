@@ -1,23 +1,21 @@
 package info.mornlight.gw2s.android.app;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
+import android.view.Menu;
+import android.view.MenuItem;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.model.wvw.WvwMatch;
-import roboguice.inject.InjectFragment;
 
 /**
  * Created by alfred on 5/24/13.
  */
 public class WvwActivity extends BaseActivity {
-    @InjectFragment(R.id.fragment)
-    WvwFragment fragment;
+    private WvwFragment fragment;
 
     /** Called when the activity is first created. */
     @Override
@@ -25,9 +23,9 @@ public class WvwActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wvw_activity);
 
-        updateAd();
+        fragment = (WvwFragment) getFragmentManager().findFragmentById(R.id.fragment);
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.world_vs_world);
@@ -47,7 +45,7 @@ public class WvwActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.wvw_activity, menu);
+        getMenuInflater().inflate(R.menu.wvw_activity, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

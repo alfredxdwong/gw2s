@@ -3,7 +3,7 @@ package info.mornlight.gw2s.android.app;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.Loader;
+import android.content.Loader;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
@@ -12,62 +12,59 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import butterknife.InjectView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.db.Database;
 import info.mornlight.gw2s.android.model.item.*;
 import info.mornlight.gw2s.android.ui.LoaderFragment;
 import info.mornlight.gw2s.android.ui.ThrowableLoader;
-import roboguice.inject.InjectView;
 
-/**
- * Created by alfred on 5/29/13.
- */
 public class ItemDetailsFragment extends LoaderFragment<ItemDetailsFragment.ItemInfo, View> {
     @InjectView(R.id.image)
-    private ImageView image;
+    protected ImageView image;
     @InjectView(R.id.name)
-    private TextView name;
+    protected TextView name;
     @InjectView(R.id.type)
-    private TextView type;
+    protected TextView type;
     @InjectView(R.id.subtype)
-    private TextView subtype;
+    protected TextView subtype;
     @InjectView(R.id.specific_view)
-    private LinearLayout specificView;
+    protected LinearLayout specificView;
     @InjectView(R.id.description)
-    private TextView description;
+    protected TextView description;
     @InjectView(R.id.game_type)
-    private TextView gameType;
+    protected TextView gameType;
     @InjectView(R.id.restrictions)
-    private TextView restrictions;
+    protected TextView restrictions;
     @InjectView(R.id.flags)
-    private TextView flags;
+    protected TextView flags;
     @InjectView(R.id.vendor_value_gold)
-    private TextView vendorValueGold;
+    protected TextView vendorValueGold;
     @InjectView(R.id.vendor_value_silver)
-    private TextView vendorValueSilver;
+    protected TextView vendorValueSilver;
     @InjectView(R.id.vendor_value_copper)
-    private TextView vendorValueCopper;
+    protected TextView vendorValueCopper;
     @InjectView(R.id.coin_gold)
-    private ImageView gold;
+    protected ImageView gold;
     @InjectView(R.id.coin_silver)
-    private ImageView silver;
+    protected ImageView silver;
     @InjectView(R.id.coin_copper)
-    private ImageView copper;
+    protected ImageView copper;
     @InjectView(R.id.required_level)
-    private TextView requiredLevel;
+    protected TextView requiredLevel;
     @InjectView(R.id.infix_upgrade)
-    private LinearLayout infixUpgrade;
+    protected LinearLayout infixUpgrade;
 
     //llRecipe
     @InjectView(R.id.recipe)
-    LinearLayout llRecipe;
+    protected LinearLayout llRecipe;
     @InjectView(R.id.min_rating)
-    TextView minRating;
+    protected TextView minRating;
     @InjectView(R.id.recipe_disciplines)
-    TextView disciplines;
+    protected TextView disciplines;
     @InjectView(R.id.recipe_ingredients)
-    LinearLayout ingredients;
+    protected LinearLayout ingredients;
 
     @Override
     protected View onCreateContentView(LayoutInflater inflater, Bundle savedInstanceState) {
@@ -139,7 +136,7 @@ public class ItemDetailsFragment extends LoaderFragment<ItemDetailsFragment.Item
 
         ingredients.removeAllViews();
         for(int i = 0; i < recipe.getIngredients().length; i++) {
-            View view = getSherlockActivity().getLayoutInflater().inflate(R.layout.item_details_fragment_ingredient, null);
+            View view = getActivity().getLayoutInflater().inflate(R.layout.item_details_fragment_ingredient, null);
             ImageView image = (ImageView) view.findViewById(R.id.image);
             TextView name = (TextView) view.findViewById(R.id.name);
             TextView count = (TextView) view.findViewById(R.id.count);

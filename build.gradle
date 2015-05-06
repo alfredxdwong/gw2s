@@ -1,27 +1,13 @@
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.12'
-}
-
-buildscript {
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath 'com.android.tools.build:gradle:0.10.+'
-  }
+  gradleVersion = '2.3'
 }
 
 allprojects {
-  group = 'info.mornlight.gw2s'
-  version = '1.0.5'
-
-  apply {
-    plugin 'idea'
-  }
+  group = 'info.mornlight.gw2sr'
+  version = '2.0.0'
 
   repositories {
-    //flatDir(dirs: rootProject.projectDir.getAbsolutePath() + File.separator + 'java-libs')
-    //mavenLocal()
     mavenCentral()
+    jcenter()
   }
 }

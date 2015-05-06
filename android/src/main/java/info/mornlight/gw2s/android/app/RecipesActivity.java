@@ -1,21 +1,18 @@
 package info.mornlight.gw2s.android.app;
 
+import android.app.ActionBar;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v4.widget.DrawerLayout;
+import android.view.*;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.model.item.Discipline;
 import info.mornlight.gw2s.android.ui.ItemListAdapter;
 import info.mornlight.gw2s.android.ui.ItemView;
-import roboguice.inject.InjectFragment;
 
 import java.util.Arrays;
 
@@ -23,11 +20,14 @@ import java.util.Arrays;
  * Created by alfred on 5/24/13.
  */
 public class RecipesActivity extends BaseActivity {
-    private SlidingMenu menu;
+    protected RecipesFragment fragment;
+
+    @InjectView(R.id.menu)
+    protected ListView menu;
     private ItemsMenuAdapter adapter;
 
-    @InjectFragment(R.id.fragment)
-    private RecipesFragment fragment;
+    @InjectView(R.id.drawer)
+    protected DrawerLayout drawer;
 
 
     @Override
@@ -35,9 +35,10 @@ public class RecipesActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipes_activity);
 
-        updateAd();
+        fragment = (RecipesFragment) getFragmentManager().findFragmentById(R.id.fragment);
+        ButterKnife.inject(this);
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.recipes);
@@ -47,7 +48,7 @@ public class RecipesActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.recipes_activity, menu);
+        getMenuInflater().inflate(R.menu.recipes_activity, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -59,7 +60,11 @@ public class RecipesActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.m_menu:
-                menu.toggle();
+                if(drawer.isDrawerOpen(menu)) {
+                    drawer.closeDrawer(menu);
+                } else {
+                    drawer.openDrawer(menu);
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -135,7 +140,7 @@ public class RecipesActivity extends BaseActivity {
      */
 
     private void initializeSlidingMenu() {
-        ListView menuView = (ListView) getLayoutInflater().inflate(R.layout.items_activity_sliding_menu, null);
+        //ListView menuView = (ListView) getLayoutInflater().inflate(R.layout.items_activity_sliding_menu, null);
         ItemsMenuItem[] menuItems = new ItemsMenuItem[] {
             new ItemsMenuItem(Discipline.Armorsmith, getString(R.string.armorsmith)),
                 new ItemsMenuItem(Discipline.Armorsmith, "Bag", getString(R.string.bag)),
@@ -235,32 +240,20 @@ public class RecipesActivity extends BaseActivity {
 
         adapter = new ItemsMenuAdapter(getLayoutInflater());
         adapter.setItems(Arrays.asList(menuItems));
-        menuView.setAdapter(adapter);
-        menuView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        menu.setAdapter(adapter);
+        menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ItemsMenuItem item = adapter.getItem(position);
 
                 onMenuItemClick(item);
-
-                menu.showContent();
             }
         });
-
-        menu = new SlidingMenu(this);
-        menu.setMode(SlidingMenu.RIGHT);
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        //menu.setShadowWidthRes(100);
-       // menu.setShadowDrawable(R.drawable.shadow);
-        menu.setBehindWidth(300);
-        menu.setBehindScrollScale(0.1f);
-        //menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-        menu.setFadeDegree(0.35f);
-        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-        menu.setMenu(menuView);
     }
 
     private void onMenuItemClick(ItemsMenuItem item) {
+        drawer.closeDrawer(menu);
+
         fragment.setFilter(item.discipline, item.type);
         fragment.refresh();
     }

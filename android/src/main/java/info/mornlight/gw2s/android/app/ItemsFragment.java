@@ -5,18 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.content.Loader;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.content.Loader;
+import android.view.*;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.db.Database;
@@ -49,7 +45,7 @@ public class ItemsFragment extends RefreshableFragment<Cursor, ListView> impleme
     @Override
     protected ListView onCreateContentView(LayoutInflater inflater, Bundle savedInstanceState) {
         ListView view = (ListView) inflater.inflate(R.layout.items_fragment, null);
-        ItemsCursorAdapter adapter = new ItemsCursorAdapter(getSherlockActivity(), null);
+        ItemsCursorAdapter adapter = new ItemsCursorAdapter(getActivity(), null);
         view.setAdapter(adapter);
 
         return view;

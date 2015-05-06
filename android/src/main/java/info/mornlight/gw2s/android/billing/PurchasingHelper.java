@@ -84,8 +84,9 @@ public class PurchasingHelper {
             }
         };
 
-        context.bindService(new Intent("com.android.vending.billing.InAppBillingService.BIND"),
-                serviceConn, Context.BIND_AUTO_CREATE);
+        Intent intent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
+        intent.setPackage("com.android.vending");
+        context.bindService(intent, serviceConn, Context.BIND_AUTO_CREATE);
     }
 
     public void uninit() {

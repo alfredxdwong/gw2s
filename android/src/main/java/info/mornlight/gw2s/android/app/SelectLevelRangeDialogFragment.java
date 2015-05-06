@@ -8,11 +8,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import butterknife.InjectView;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.ui.BaseDialogFragment;
 import info.mornlight.gw2s.android.ui.DialogResultListener;
 import info.mornlight.gw2s.android.widget.RangeSeekBar;
-import roboguice.inject.InjectView;
 
 /**
  * Created by alfred on 6/2/13.
@@ -24,11 +24,11 @@ public class SelectLevelRangeDialogFragment extends BaseDialogFragment {
     public static final String ARG_RANGE_MAX = "range_max";
 
     @InjectView(R.id.seekbar)
-    private RangeSeekBar<Integer> seekbar;
+    protected RangeSeekBar<Integer> seekbar;
     @InjectView(R.id.min)
-    private TextView min;
+    protected TextView min;
     @InjectView(R.id.max)
-    private TextView max;
+    protected TextView max;
 
     public static SelectLevelRangeDialogFragment newInstance(int requestCode, String title, int min, int max, int rangeMin, int rangeMax, DialogResultListener listener) {
         Bundle args = createArguments(title, "", requestCode);

@@ -1,17 +1,15 @@
 package info.mornlight.gw2s.android.app;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.MenuItem;
+import android.view.MenuItem;
 import info.mornlight.gw2s.android.R;
-import roboguice.inject.InjectFragment;
 
 public class SelectWorldActivity extends BaseActivity {
     static public final String WORLD_ID = "world_id";
 
-    @InjectFragment(R.id.fragment)
     private SelectWorldFragment fragment;
 
     @Override
@@ -19,7 +17,9 @@ public class SelectWorldActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_world_activity);
 
-        ActionBar actionBar = getSupportActionBar();
+        fragment = (SelectWorldFragment) getFragmentManager().findFragmentById(R.id.fragment);
+
+        ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.select_world);

@@ -5,21 +5,21 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioGroup;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import info.mornlight.gw2s.android.R;
 import info.mornlight.gw2s.android.model.item.Rarity;
 import info.mornlight.gw2s.android.ui.BaseDialogFragment;
 import info.mornlight.gw2s.android.ui.DialogResultListener;
-import roboguice.inject.InjectView;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by alfred on 6/2/13.
- */
 public class SelectRarityDialogFragment extends BaseDialogFragment {
     /**
      * Arguments key for the selected item

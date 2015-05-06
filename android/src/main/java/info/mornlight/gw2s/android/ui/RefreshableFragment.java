@@ -16,11 +16,11 @@
 package info.mornlight.gw2s.android.ui;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import info.mornlight.gw2s.android.R;
 
 /**

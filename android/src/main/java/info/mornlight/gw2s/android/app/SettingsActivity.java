@@ -1,18 +1,18 @@
 package info.mornlight.gw2s.android.app;
 
+import android.app.ActionBar;
 import android.os.Bundle;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockPreferenceActivity;
-import com.actionbarsherlock.view.MenuItem;
+import android.preference.PreferenceActivity;
+import android.view.MenuItem;
 import info.mornlight.gw2s.android.R;
 
-public class SettingsActivity extends SherlockPreferenceActivity
+public class SettingsActivity extends PreferenceActivity
 {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.settings);

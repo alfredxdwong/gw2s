@@ -16,8 +16,8 @@
 package info.mornlight.gw2s.android.ui;
 
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.Loader;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Loader;
 import android.view.View;
 
 /**
@@ -27,6 +27,7 @@ import android.view.View;
  */
 public abstract class LoaderFragment<D, V extends View> extends BaseFragment<D, V>
         implements LoaderCallbacks<D> {
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

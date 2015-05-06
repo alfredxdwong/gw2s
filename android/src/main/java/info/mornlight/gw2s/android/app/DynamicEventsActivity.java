@@ -1,30 +1,30 @@
 package info.mornlight.gw2s.android.app;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
+import android.view.Menu;
+import android.view.MenuItem;
+import butterknife.ButterKnife;
 import info.mornlight.gw2s.android.R;
-import roboguice.inject.InjectFragment;
 
 public class DynamicEventsActivity extends BaseActivity
 {
-    @InjectFragment(R.id.fragment)
-    DynamicEventsFragment fragment;
+    private DynamicEventsFragment fragment;
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dynamic_events_activity);
+        ButterKnife.inject(this);
 
-        updateAd();
+        fragment = (DynamicEventsFragment)getFragmentManager().findFragmentById(R.id.fragment);
 
-        ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.dynamic_events);
@@ -36,7 +36,7 @@ public class DynamicEventsActivity extends BaseActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.dynamic_events_activity, menu);
+        getMenuInflater().inflate(R.menu.dynamic_events_activity, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
