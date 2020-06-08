@@ -1,4 +1,4 @@
-gw2s
+gw2s (this repository is archived)
 ====
 
 Guild Wars 2 Scout (GW2S) is a tool to help player view dynamic events, WvW status, game items, and crafting recipes on your android device. This application is based on the Guild Wars 2 official API.
